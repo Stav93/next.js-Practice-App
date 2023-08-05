@@ -31,9 +31,7 @@ export default function RootLayout({ children }) {
       >
         <div className="w-[350px] lg:w-[1000px] flex flex-col items-center pt-4 pb-4">
           <div className="w-full bg-slate-100 flex flex-col items-center pt-10 pb-10">
-            <div className="font-ranga text-2xl lg:text-4xl mb-5 underline decoration-3 decoration-blue-400">
-              David Kando Music
-            </div>
+            <div className="title">David Kando Music</div>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-1">
               {GRID_DATA_ITEMS.map((gridDataItem) => {
                 const { id, attributes } = gridDataItem;
