@@ -2,7 +2,10 @@
 
 export default async function getFollowers() {
   const response = await fetch(
-    "https://spotify-api-wrapper.appspot.com/artist/david-kando"
+    "https://spotify-api-wrapper.appspot.com/artist/david-kando",
+    {
+      next: { revalidate: 60 },
+    }
   );
 
   const json = await response.json();
