@@ -1,7 +1,8 @@
 "use client";
 
-import postContact from "./post-contact";
 import { useState, useTransition } from "react";
+import postContact from "./post-contact";
+import Spinner from "./spinner";
 
 export default function Form() {
   const [message, setMessage] = useState("");
@@ -17,7 +18,6 @@ export default function Form() {
 
       postContact({ name, email }).then((json) => {
         console.log(json);
-
         const errorMessage = json.ErrorMessage;
         if (json.Count > 0) {
           message = "Success";
@@ -37,14 +37,27 @@ export default function Form() {
       });
     });
   };
+
   return (
-    <form action={handleSubmit}>
+    <form action={handleSubmit} className="indent grid gap-[2px] w-[270px]">
       <label htmlFor="name">Name</label>
       <input type="text" id="name" name="name" required />
       <label htmlFor="email">Email</label>
-      <input type="email" id="email" email="email" required />
-      <button type="submit" disabled={isPending}>
-        {isPending ? "Sending..." : "Submit"}
+      <input type="email" id="email" name="email" required />
+      <button
+        type="submit"
+        disabled={isPending}
+        className={`bg-blue-700 text-center text-white w-[130px] h-[36px] mt-[4px]
+      disabled:bg-slate-50 disabled:text-slate-500`}
+      >
+        {isPending ? (
+          <span className="flex justify-center items-center h-[36px]">
+            <Spinner />
+            Sending
+          </span>
+        ) : (
+          "Submit"
+        )}
       </button>
       {displayMessage ? message : <></>}
     </form>

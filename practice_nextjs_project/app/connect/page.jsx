@@ -38,8 +38,8 @@ export default function Page() {
           </a>
           .
         </div>
-        <br />
-        <div>3. Join my email list.</div>
+        {/* <br /> */}
+        {/* <div>3. Join my email list.</div> */}
         <Form />
         <br />
         <div>
