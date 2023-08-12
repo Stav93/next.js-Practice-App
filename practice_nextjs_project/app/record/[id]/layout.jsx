@@ -7,6 +7,13 @@ export async function generateStaticParams() {
   }));
 }
 
+export async function generateMetadata({ params }) {
+  const { id } = params;
+  const { title } = RECORDS_MAP[id];
+
+  return { title: `${title} - Daviv Kando` };
+}
+
 export default function Layout({ children, params }) {
   const { id } = params;
   const { title, background } = RECORDS_MAP[id];
