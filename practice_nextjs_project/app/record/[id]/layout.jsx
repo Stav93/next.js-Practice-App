@@ -19,7 +19,7 @@ export default function Layout({ children, params }) {
   const { title, background } = RECORDS_MAP[id];
   return (
     <LayoutStracture title={title} background={background}>
-      {children}
+      <div className="flex flex-col items-center">{children}</div>
     </LayoutStracture>
   );
 }
