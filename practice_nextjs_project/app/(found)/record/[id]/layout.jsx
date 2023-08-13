@@ -1,4 +1,4 @@
-import LayoutStracture from "../../../components/layout-structure";
+import LayoutStracture from "../../../../components/layout-structure";
 import { RECORDS, RECORDS_MAP } from "./data";
 
 export async function generateStaticParams() {

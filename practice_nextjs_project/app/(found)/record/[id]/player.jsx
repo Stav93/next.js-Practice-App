@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import Spinner from "../../../components/spinner";
+import Spinner from "../../../../components/spinner";
 
 function Loading() {
   return (

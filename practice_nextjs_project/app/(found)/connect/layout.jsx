@@ -1,4 +1,4 @@
-import LayoutStracture from "../../components/layout-structure";
+import LayoutStracture from "../../../components/layout-structure";
 
 export const metadata = { title: "connect with david kando" };
 

@@ -1,7 +1,6 @@
 import "./globals.css";
 import { Ranga, Roboto_Condensed } from "next/font/google";
 import Link from "next/link";
-import { GRID_DATA_ITEMS } from "./data";
 
 const ranga = Ranga({
   subsets: ["latin"],
@@ -29,34 +28,7 @@ export default function RootLayout({ children }) {
       <body
         className={`font-roboto flex justify-center items-center mid-h-screen`}
       >
-        <div className="w-[350px] lg:w-[1000px] flex flex-col items-center pt-4 pb-4">
-          <div className="w-full bg-slate-100 flex flex-col items-center pt-10 pb-10">
-            <div className="title">David Kando Music</div>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-1">
-              {GRID_DATA_ITEMS.map((gridDataItem) => {
-                const { id, attributes } = gridDataItem;
-                return (
-                  <Link key={id} href={attributes.href}>
-                    <div
-                      className={`${attributes.background} w-36 h-36 lg:w-52 lg:h-52 flex items-end border-black border-[2px]`}
-                    >
-                      <div
-                        className="font-ranga bg-slate-200/75 w-full text-center mb-2 
-                      text-sm lg:text-2xl
-                      h-[18px] lg:h-[30px]
-                      hover:text-white hover:bg-slate-700/75"
-                      >
-                        {attributes.text}
-                      </div>
-                    </div>
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-          <br />
-          {children}
-        </div>
+        {children}
       </body>
     </html>
   );

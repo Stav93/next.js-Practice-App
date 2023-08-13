@@ -1,5 +1,5 @@
 import * as embeds from "../[id]/embedes/index";
-import { POISON_WORMS_ID, IN_PERPETUITY_ID } from "../../data";
+import { POISON_WORMS_ID, IN_PERPETUITY_ID } from "../../../data";
 
 export const POISON_WORMS_TITLE = "Poison Worms";
 export const IN_PERPETUITY_TITLE = "In Perpetuity";
