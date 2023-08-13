@@ -1,6 +1,5 @@
 import "./globals.css";
 import { Ranga, Roboto_Condensed } from "next/font/google";
-import Link from "next/link";
 
 const ranga = Ranga({
   subsets: ["latin"],
@@ -26,7 +25,7 @@ export default function RootLayout({ children }) {
     ${robotoCondensed.variable}`}
     >
       <body
-        className={`font-roboto flex justify-center items-center mid-h-screen`}
+        className={`font-roboto flex justify-center items-center min-h-screen`}
       >
         {children}
       </body>
