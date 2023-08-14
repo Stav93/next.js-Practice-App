@@ -1,16 +1,29 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useSelectedLayoutSegments } from "next/navigation";
 import LayoutStracture from "../../../components/layout-structure";
-import { RECORDS_MAP, findIdByPathname } from "./[id]/data";
+import SegmentBreadcrumbs from './../../../components/segment-breadcrumbs';
+import { RECORDS_MAP, findIdByPathname, SEGMENT_TITLES_MAP } from "./[id]/data";
 
 export default function Layout({ children }) {
   const pathname = usePathname();
+  const segments = useSelectedLayoutSegments();
   console.log("pathname ", pathname);
+  console.log("segments ", segments);
+
   const id = findIdByPathname(pathname);
-  const { title, background } = RECORDS_MAP[id];
+  const { background } = RECORDS_MAP[id];
   return (
-    <LayoutStracture title={title} background={background}>
+    <LayoutStracture
+      title={
+        <SegmentBreadcrumbs
+         segments={segments}
+          startingSegment={"/record"}
+          segmentTitlesMap={SEGMENT_TITLES_MAP} 
+        />
+      }
+      background={background}
+    >
       <div className="flex flex-col items-center">{children}</div>
     </LayoutStracture>
   );
