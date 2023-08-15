@@ -1,13 +1,16 @@
-import { PREMISE, QUESTIONS } from "./data";
+import { PREMISE, QUESTIONS } from "../data";
 
 export default function Page() {
   return (
     <>
       {PREMISE}
-      <form>
+      <form action="/quiz/result">
         {QUESTIONS.map(({ id: questionId, question, answers }) => (
           <fieldset key={questionId} className="mt-5">
-            <legend>{questionId}{")"} {question}</legend>
+            <legend>
+              {questionId}
+              {")"} {question}
+            </legend>
             {answers.map(({ id: answerId, answer, type }) => (
               <div key={answerId}>
                 <input
@@ -16,13 +19,13 @@ export default function Page() {
                   name={questionId}
                   value={type}
                 />
-                <label htmlFor={answerId}>{" "}{answer}</label>
+                <label htmlFor={answerId}> {answer}</label>
               </div>
             ))}
           </fieldset>
         ))}
         <div className=" flex justify-center mt-5">
-            <button className="bg-blue-700 text-white p-2">Submit</button>
+          <button className="bg-blue-700 text-white p-2">Submit</button>
         </div>
       </form>
     </>
