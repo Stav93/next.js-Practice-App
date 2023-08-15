@@ -1,7 +1,7 @@
 "use client";
 
 import { Suspense } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, notFound } from "next/navigation";
 import {
   getQuizResult,
   RESULT_MAP,
@@ -36,7 +36,10 @@ export default function Page() {
 
   const result = getQuizResult({ selectionMap });
   const resultData = RESULT_MAP[result];
-  console.log("resultData ", resultData);
+
+  if (!resultData) {
+    notFound();
+  }
 
   return (
     <div>
