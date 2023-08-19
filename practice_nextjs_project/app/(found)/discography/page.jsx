@@ -1,3 +1,6 @@
+"use client"
+
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { RECORDS } from "../record/[id]/data";
@@ -17,10 +20,10 @@ function PlayRow({title, href, iconImage}) {
   )
 }
 
-export default function Page() {
-  return (
-    <div>
-      {RECORDS.map(
+function Records({records}) {
+  if (records.length > 0) {
+    return (
+      records.map(
         ({
           id,
           title,
@@ -33,7 +36,7 @@ export default function Page() {
           youtubeMusicLink 
           }) => (
           <div key={id}>
-            <div className="w-[330px] lg:w-[500px] bg-white p-5 lg:p-10 text-left ">
+            <div className="discography-panel text-left ">
               <Link
                 href={`/record/${id}`}
                 className="flex flex-row jutify-center"
@@ -86,7 +89,36 @@ export default function Page() {
             <br />
           </div>
         )
-      )}
+      )
+    )
+  }
+  return <div className="discography-panel text-center"> No Match Found </div>
+}
+
+export default function Page() {
+  const [text, setText] = useState("");
+  const [records, setRecords] = useState(RECORDS);
+
+  useEffect(() => {
+    const filteredRecords = RECORDS.filter(
+      record => record.title.includes(text)
+    );
+    setRecords(filteredRecords);
+  }, [text])
+
+  return (
+    <div className="min-h-screen" > 
+      <div className="discography-panel text-center">
+        <label className="mb-2">Search for a record</label>
+        <input
+          value={text}
+          onChange={e => setText(e.target.value)}
+          type="text"
+          className="w-full border-slate-200 border-[2px]"
+        />
+      </div>
+      <br/>
+      <Records records={records} />
     </div>
   );
 }
