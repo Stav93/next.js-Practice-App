@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo, useDeferredValue } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { RECORDS } from "../record/[id]/data";
@@ -20,7 +20,7 @@ function PlayRow({title, href, iconImage}) {
   )
 }
 
-function Records({records}) {
+const Records = memo(function Records({records}) {
   if (records.length > 0) {
     return (
       records.map(
@@ -94,17 +94,20 @@ function Records({records}) {
   }
   return <div className="discography-panel text-center"> No Match Found </div>
 }
+)
+
 
 export default function Page() {
   const [text, setText] = useState("");
   const [records, setRecords] = useState(RECORDS);
+  const deferredText = useDeferredValue(text);
 
   useEffect(() => {
     const filteredRecords = RECORDS.filter(
-      record => record.title.includes(text)
+      record => record.title.includes(deferredText)
     );
     setRecords(filteredRecords);
-  }, [text])
+  }, [deferredText])
 
   return (
     <div className="min-h-screen" > 
